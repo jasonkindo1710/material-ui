@@ -1,5 +1,5 @@
-import { Typography, Button, ButtonGroup, Container } from "@material-ui/core";
-
+import { Typography, Button, Container } from "@material-ui/core";
+import { AcUnitOutlined, Send, ArrowRight } from "@mui/icons-material";
 import React from "react";
 
 export default function Create() {
@@ -15,15 +15,22 @@ export default function Create() {
       </Typography>
 
       <Button type="submit">Submit</Button>
-      <Button type="submit" color="secondary" variant="outlined">
+      <Button
+        type="submit"
+        color="secondary"
+        variant="contained"
+        startIcon={<Send />}
+        endIcon={<ArrowRight />}
+      >
         Submit
       </Button>
-
-      <ButtonGroup color="secondary" variant="contained">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
+      <br />
+      <AcUnitOutlined />
+      <AcUnitOutlined color="secondary" fontSize="large" />
+      <AcUnitOutlined color="secondary" fontSize="small" />
+      <AcUnitOutlined color="action" fontSize="small" />
+      <AcUnitOutlined color="error" fontSize="small" />
+      <AcUnitOutlined color="disabled" fontSize="small" />
     </Container>
   );
 }
