@@ -4,6 +4,11 @@ import {
   makeStyles,
   Typography,
   TextField,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormLabel,
+  FormControl,
 } from "@material-ui/core";
 import { ArrowRight, Send } from "@mui/icons-material";
 import React, { useState } from "react";
@@ -18,25 +23,26 @@ const useStyles = makeStyles({
 
 export default function Create() {
   const classes = useStyles();
-  const [title, setTitle] = useState('')
-  const [details, setDetails] = useState('')
-  const [titleError, setTitleError] = useState('')
-  const [detailsError, setDetailsError] = useState('')
+  const [title, setTitle] = useState("");
+  const [details, setDetails] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [detailsError, setDetailsError] = useState("");
+  const [category, setCategory] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setTitleError(false)
-    setDetailsError(false)
-    if(title === ''){
-      setTitleError(true)
+    e.preventDefault();
+    setTitleError(false);
+    setDetailsError(false);
+    if (title === "") {
+      setTitleError(true);
     }
-    if(details === ''){
-      setDetailsError(true)
+    if (details === "") {
+      setDetailsError(true);
     }
-    if(title && details){
-      console.log(title, details);
+    if (title && details) {
+      console.log(title, details, category);
     }
-  }
+  };
   return (
     <Container>
       <Typography
@@ -50,7 +56,7 @@ export default function Create() {
 
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
-        onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           className={classes.field}
           label="Note title"
           variant="outlined"
@@ -71,19 +77,27 @@ export default function Create() {
           required
           error={detailsError}
         />
-        <Button
-        type="submit"
-        color="secondary"
-        variant="contained"
-        startIcon={<Send />}
-        endIcon={<ArrowRight />}
-      
-      >
-        Submit
-      </Button>
-      </form>
+        <FormControl className={classes.field}>
+        <FormLabel>Note Category</FormLabel>
+        <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)}>
+          <FormControlLabel control={<Radio/>} label="Money" value="money"/>
+          <FormControlLabel control={<Radio/>} label="Todos" value="todos"/>
+          <FormControlLabel control={<Radio/>} label="Reminders" value="reminders"/>
+          <FormControlLabel control={<Radio/>} label="Work" value="work"/>
+        </RadioGroup>
+        </FormControl>
+        
 
-      
+        <Button
+          type="submit"
+          color="secondary"
+          variant="contained"
+          startIcon={<Send />}
+          endIcon={<ArrowRight />}
+        >
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 }
