@@ -21,7 +21,7 @@ export default function Create() {
   return (
     <Container>
       <Typography
-      className={classes.title}
+     
         variant="h6"
         color="textSecondary"
         component="h2"
@@ -32,7 +32,7 @@ export default function Create() {
 
       <Button type="submit">Submit</Button>
       <Button
-        className={classes.btn}
+      
         type="submit"
         color="secondary"
         variant="contained"
