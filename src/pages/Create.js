@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import { ArrowRight, Send } from "@mui/icons-material";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles({
   field: {
@@ -28,6 +30,7 @@ export default function Create() {
   const [titleError, setTitleError] = useState("");
   const [detailsError, setDetailsError] = useState("");
   const [category, setCategory] = useState('')
+  const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +43,11 @@ export default function Create() {
       setDetailsError(true);
     }
     if (title && details) {
-      console.log(title, details, category);
+      fetch('http://localhost:8080/notes', {
+        method: 'POST',
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify({title, details, category})
+      }).then(() => history.push('/'))
     }
   };
   return (
